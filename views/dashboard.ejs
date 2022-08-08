@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Innova SCM</title>
+<meta name="charset" content="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/dshboard">Dashboard</a>
+  <a href="/supplier">Suppliers</a>
+  <a href="/po">Purchase Order</a>
+  <a href="#">Inventory</a>
+  <a href="#">Transport</a>
+  <a href="#">POS</a>
+  <a href="#">Accounting</a>
+  <a href="#">HR</a>
+</div>
+  <div class="row main">
+    <img onclick="openNav()" class="menu" src="img/menu.png" />
+
+<div class="col-lg-5">
+<img class="logo" src="img/SCM.png" alt="SCM" />
+  </div>
+  <div class="col-lg-1">
+  <a class="logout" href="/logout">Logout</a>
+</div>
+  <div class="col-lg-12">
+
+    </div>
+</div>
+  <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="js/bootsrrap.min.js"></script>
+  <script type="text/javascript">
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+
+  /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+  }
+  </script>
+</body>
+</html>
