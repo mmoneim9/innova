@@ -6,34 +6,18 @@ app.use(express.static('uploads'))
 let ejs = require('ejs')
 const mongoose = require('mongoose');
 const path = require('path')
-function makeNewConnection(uri) {
-    const db = mongoose.createConnection(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-
-    db.on('error', function (error) {
-        console.log(`MongoDB :: connection ${this.name} ${JSON.stringify(error)}`);
-        db.close().catch(() => console.log(`MongoDB :: failed to close connection ${this.name}`));
-    });
-
-    db.on('connected', function () {
-        mongoose.set('debug', function (col, method, query, doc) {
-            console.log(`MongoDB :: ${this.conn.name} ${col}.${method}(${JSON.stringify(query)},${JSON.stringify(doc)})`);
-        });
-        console.log(`MongoDB :: connected ${this.name}`);
-    });
-
-    db.on('disconnected', function () {
-        console.log(`MongoDB :: disconnected ${this.name}`);
-    });
-
-    return db;
+module.exports.conn = async function()  {
+    return await(mongoose.createConnection('mongodb://admin:moha990990990@127.0.0.1:21017/innova', {
+    bufferCommands: false, // Disable mongoose buffering
+    bufferMaxEntries: 0 // and MongoDB driver buffering
+   }));
 }
-
-var conn =makeNewConnection('mongodb://mmoneim:mmoneim920222@localhost:27017/innova');
-var conn1 =makeNewConnection('mongodb://mmoneim:mmoneim920222@localhost:27017/sadasd');
-
+module.exports.conn2 = async function()  {
+    return await(mongoose.createConnection('mongodb://admin:moha990990990@127.0.0.1:21017/dbtest', {
+    bufferCommands: false, // Disable mongoose buffering
+    bufferMaxEntries: 0 // and MongoDB driver buffering
+   }));
+}
 const bodyParser = require('body-parser');
 const multer  = require('multer')
 const bcrypt  = require('bcrypt-nodejs')
