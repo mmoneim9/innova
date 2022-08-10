@@ -10,12 +10,23 @@ module.exports.conn = async function()  {
     return await(mongoose.createConnection('mongodb://admin:moha990990990@127.0.0.1:21017/innova', {
     bufferCommands: false, // Disable mongoose buffering
     bufferMaxEntries: 0 // and MongoDB driver buffering
-   }));
+  }).then(()=>{
+
+    var user    = mongoose.model("user",userschema)
+
+
+  }));
 }
 module.exports.conn2 = async function()  {
     return await(mongoose.createConnection('mongodb://admin:moha990990990@127.0.0.1:21017/dbtest', {
     bufferCommands: false, // Disable mongoose buffering
     bufferMaxEntries: 0 // and MongoDB driver buffering
+   }).then(()=>{
+
+     var po    = conn1.model("purchaseo",purchaseo)
+     var supplier    = conn1.model("supplier",suppliermodel)
+
+
    }));
 }
 const bodyParser = require('body-parser');
@@ -23,12 +34,9 @@ const multer  = require('multer')
 const bcrypt  = require('bcrypt-nodejs')
 const userschema  = require('./models/user')
 const suppliermodel  = require('./models/supplier')
-var user    = conn.model("user",userschema)
 const purchaseo  = require('./models/purchaseo')
 const co  = require('./co')
 app.use(co)
-var po    = conn1.model("purchaseo",purchaseo)
-var supplier    = conn1.model("supplier",suppliermodel)
 
 const imageStorage = multer.diskStorage({
     // Destination to store image
