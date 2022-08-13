@@ -8,13 +8,15 @@ const mongoose = require('mongoose');
 var user;
 const userschema  = require('./models/user')
 const db = require('./db');
-let conn = null;
-conn =   db.initDb();
+
+var  conn =  db.initDb();
 const uri = 'mongodb://mohamed:moha990990990@localhost:21017/innova'
 user = conn.model("user",userschema)
 const bodyParser = require('body-parser');
 const multer  = require('multer')
 const bcrypt  = require('bcrypt-nodejs')
+const suppliermodel  = require('./models/supplier')
+const purchaseo  = require('./models/purchaseo')
 const co  = require('./co')
 app.use(co)
 

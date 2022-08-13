@@ -9,18 +9,12 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const multer  = require('multer')
 const bcrypt  = require('bcrypt-nodejs')
-module.exports.conn2 = async function()  {
-    return await(mongoose.createConnection('mongodb://admin:moha990990990@127.0.0.1:21017/dbtest', {
-    bufferCommands: false, // Disable mongoose buffering
-    bufferMaxEntries: 0 // and MongoDB driver buffering
-   }).then(()=>{
-
-     var po    = conn1.model("purchaseo",purchaseo)
-     var supplier    = conn1.model("supplier",suppliermodel)
-
-
-   }));
-}
+const db = require('./db');
+conn =   db.initDb();
+const suppliermodel  = require('./models/supplier')
+const purchaseo  = require('./models/purchaseo')
+var supplier = conn.model("supplier",suppliermodel)
+var po = conn.model("po",purchaseo)
 const imageStorage = multer.diskStorage({
     // Destination to store image
     destination: 'uploads',
